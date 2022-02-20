@@ -4,46 +4,32 @@ import './post-list-item.css'
 
 
 export default class PostListItem extends Component {
-       state = {
-           important:false,
-           like: false
-       }
-
-       onImportant = () => {
-        this.setState(state =>({
-            important: !state.important
-        }));
-    }
-        Onlike = () => {
-            this.setState(state =>({
-                like: !state.like
-            }))
-    }
-      
+    
     render () {
-            const {label} = this.props
-            const {important} = this.state
-            const {like} = this.state
+            const {label,onDelete,onToggleInportant,onToggleLikde,important,like} = this.props
             let classNames = 'app-list-item d-flex justify-content-between'
             if (important) {
                 classNames +=' important'
+                
             }
             if (like) {
                 classNames +=' like'
+                
             }
             return(
             <div className={classNames}>
-            <span className="app-list-item-label" onClick={this.Onlike} >{label}</span>
+            <span className="app-list-item-label" onClick={onToggleLikde} >{label}</span>
             <div className="d-flex justify-content-center align-items-center">
                 <button 
                     type="button"
                     className="btn-star btn-sm"
-                    onClick={this.onImportant}>
+                    onClick={onToggleInportant}>
                     <i className="bi bi-star"></i>
                 </button>
                 <button 
                     type="button"
-                    className="btn-trash btn-sm">
+                    className="btn-trash btn-sm"
+                    onClick={onDelete}>
                     <i className="bi bi-trash"></i>
                 </button>
                     <i 

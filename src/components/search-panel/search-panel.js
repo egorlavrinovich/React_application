@@ -1,13 +1,26 @@
-import react from "react";
+import react, { Component } from "react";
+import { render } from "react-dom";
 import './search-panel.css'
 
-const SearchPanel = () => {
-    return (
-        <input
-            className="form-control search-input"
-            type ="text"
-            placeholder="Поиск по записям"
-            />
-    )
+export default class SearchPanel extends Component{
+    state ={
+        term:''
+    }
+    onChange = (vivod) =>{
+        const term = vivod.target.value
+        this.setState({term})
+        this.props.Update(term)
+    }
+    render(){
+        return (
+            <input
+                className="form-control search-input"
+                type ="text"
+                placeholder="Поиск по записям"
+                onChange={this.onChange}
+                />
+        )
+    }
 }
-export default SearchPanel
+
+
